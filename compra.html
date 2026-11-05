@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Comprar Producto | POLLITOS LIZ</title>
+
+<style>
+
+/* =================================
+   CONFIGURACIÓN GENERAL
+================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+
+    background-image:url("fondo-compra.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:25px;
+    overflow-x:hidden;
+
+    animation:aparecer 1.2s ease;
+}
+
+/* ANIMACIÓN DE APARICIÓN */
+
+@keyframes aparecer{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+/* FONDO OSCURO ANIMADO */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.65);
+    z-index:0;
+    animation:fondoOscuro 2s ease;
+}
+
+@keyframes fondoOscuro{
+    from{background:rgba(0,0,0,0);}
+    to{background:rgba(0,0,0,0.65);}
+}
+
+/* =================================
+   TARJETA PRINCIPAL
+================================= */
+
+.contenedor{
+    position:relative;
+    z-index:1;
+
+    width:100%;
+    max-width:430px;
+
+    background:linear-gradient(145deg,#ffffff,#fff3e8);
+
+    padding:35px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:0 10px 35px rgba(0,0,0,0.5);
+
+    border:2px solid #ffcfaa;
+
+    animation:entradaTarjeta 1.2s ease both;
+
+    transition:.5s;
+}
+
+@keyframes entradaTarjeta{
+    0%{
+        opacity:0;
+        transform:translateY(80px) scale(.8);
+    }
+    100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.contenedor:hover{
+    box-shadow:0 15px 45px rgba(255,120,40,.4);
+}
+
+/* =================================
+   TÍTULO
+================================= */
+
+h1{
+    color:#d84315;
+    margin-bottom:20px;
+    font-size:29px;
+
+    animation:tituloBrillante 2.5s infinite alternate;
+}
+
+@keyframes tituloBrillante{
+    from{
+        text-shadow:0 0 3px #ffab91;
+        transform:scale(1);
+    }
+    to{
+        text-shadow:0 0 15px #ff7043,0 0 25px #ffab91;
+        transform:scale(1.04);
+    }
+}
+
+/* =================================
+   IMAGEN DEL PRODUCTO
+================================= */
+
+.contenedor img{
+    width:250px;
+    height:250px;
+
+    max-width:100%;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    margin-bottom:20px;
+
+    border:5px solid white;
+
+    box-shadow:0 7px 20px rgba(0,0,0,.2);
+
+    animation:imagenFlotante 3s ease-in-out infinite;
+
+    transition:.5s;
+}
+
+@keyframes imagenFlotante{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+.contenedor img:hover{
+    transform:scale(1.08) rotate(2deg);
+    box-shadow:0 10px 30px #ff704377;
+}
+
+/* =================================
+   SUBTÍTULOS
+================================= */
+
+h2{
+    color:#6d2816;
+    margin:15px 0;
+    animation:entradaTexto 1.5s ease;
+}
+
+@keyframes entradaTexto{
+    from{
+        opacity:0;
+        transform:translateX(-25px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* =================================
+   SELECTOR DE CANTIDAD
+================================= */
+
+select{
+    width:130px;
+    padding:12px;
+
+    font-size:19px;
+    font-weight:bold;
+
+    border-radius:12px;
+    border:2px solid #ed7416;
+
+    margin-top:10px;
+
+    background:white;
+    color:#a92319;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    animation:selectorEntrada 1.5s ease;
+}
+
+@keyframes selectorEntrada{
+    from{
+        opacity:0;
+        transform:scale(.7);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+select:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 15px #ed741677;
+}
+
+select:focus{
+    outline:none;
+    border-color:#a92319;
+    box-shadow:0 0 15px #ed7416;
+}
+
+/* =================================
+   PRECIO
+================================= */
+
+.precio{
+    margin-top:25px;
+
+    font-size:27px;
+    color:#e53935;
+
+    font-weight:bold;
+
+    background:#fff0e5;
+
+    padding:15px;
+
+    border-radius:13px;
+
+    border:2px solid #ffd0b0;
+
+    animation:precioBrillo 2s infinite alternate;
+
+    transition:.3s;
+}
+
+@keyframes precioBrillo{
+    from{
+        box-shadow:0 0 3px #ff7043;
+        transform:scale(1);
+    }
+    to{
+        box-shadow:0 0 18px #ff704388;
+        transform:scale(1.04);
+    }
+}
+
+/* =================================
+   BOTONES GENERALES
+================================= */
+
+button{
+    position:relative;
+    overflow:hidden;
+
+    margin-top:22px;
+
+    background:linear-gradient(135deg,#ff7043,#e53935);
+
+    color:white;
+
+    border:none;
+
+    padding:16px 32px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+    box-shadow:0 5px 15px #0003;
+}
+
+/* BRILLO DEL BOTÓN */
+
+button::before{
+    content:"";
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:65%;
+    height:100%;
+
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.65),
+        transparent
+    );
+
+    transform:skewX(-25deg);
+
+    transition:left .7s;
+}
+
+button:hover::before{
+    left:150%;
+}
+
+button:hover{
+    background:linear-gradient(135deg,#b71c1c,#e53935);
+    transform:translateY(-5px) scale(1.07);
+    box-shadow:0 10px 25px #e5393580;
+}
+
+button:active{
+    transform:scale(.94);
+}
+
+/* BOTÓN REGRESAR */
+
+.regresar{
+    background:linear-gradient(135deg,#777,#333);
+    margin-top:15px;
+}
+
+.regresar:hover{
+    background:linear-gradient(135deg,#555,#111);
+}
+
+/* =================================
+   MODAL QR
+================================= */
+
+.modal{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.85);
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+
+    padding:20px;
+
+    backdrop-filter:blur(7px);
+}
+
+/* VENTANA QR */
+
+.modal-contenido{
+    background:linear-gradient(145deg,#fff,#fff0e5);
+
+    padding:30px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    max-width:400px;
+    width:100%;
+
+    box-shadow:0 10px 40px #0008;
+
+    border:3px solid #ffb77d;
+
+    animation:modalEntrada .6s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes modalEntrada{
+    from{
+        opacity:0;
+        transform:translateY(60px) scale(.7) rotate(-5deg);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1) rotate(0);
+    }
+}
+
+/* TÍTULO QR */
+
+.modal-contenido h2{
+    color:#d84315;
+    animation:tituloBrillante 2s infinite alternate;
+}
+
+/* IMAGEN QR */
+
+.modal-contenido img{
+    width:250px;
+    max-width:100%;
+    height:auto;
+
+    padding:10px;
+
+    background:white;
+
+    border:5px solid #ffb77d;
+
+    border-radius:15px;
+
+    margin:15px auto;
+
+    animation:qrFlotante 3s infinite ease-in-out;
+}
+
+@keyframes qrFlotante{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-7px);
+    }
+}
+
+/* =================================
+   WHATSAPP
+================================= */
+
+.whatsapp-btn{
+    background:linear-gradient(135deg,#35e87a,#159447);
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:16px 23px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+    font-size:17px;
+
+    margin-top:15px;
+
+    box-shadow:0 5px 20px #25d36666;
+
+    animation:whatsappPulso 2s infinite;
+
+    transition:.3s;
+}
+
+@keyframes whatsappPulso{
+    0%,100%{
+        box-shadow:0 5px 15px #25d36655;
+    }
+    50%{
+        box-shadow:0 5px 30px #25d366cc;
+    }
+}
+
+.whatsapp-btn:hover{
+    transform:scale(1.08);
+    background:#128c45;
+}
+
+/* =================================
+   CERRAR QR
+================================= */
+
+.cerrar{
+    background:linear-gradient(135deg,#777,#333);
+    display:block;
+    margin:20px auto 0;
+}
+
+/* =================================
+   ANIMACIÓN DE CIERRE
+================================= */
+
+.modal.cerrando .modal-contenido{
+    animation:modalSalida .3s ease forwards;
+}
+
+@keyframes modalSalida{
+    to{
+        opacity:0;
+        transform:scale(.7) translateY(40px);
+    }
+}
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media(max-width:500px){
+
+    body{
+        padding:15px;
+    }
+
+    .contenedor{
+        padding:25px 18px;
+    }
+
+    h1{
+        font-size:24px;
+    }
+
+    .contenedor img{
+        width:220px;
+        height:220px;
+    }
+
+    .precio{
+        font-size:23px;
+    }
+
+    .modal-contenido{
+        padding:22px 15px;
+    }
+
+}
+
+/* RESPETAR PREFERENCIAS DE MOVIMIENTO */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =================================
+     TARJETA DE COMPRA
+================================= -->
+
+<div class="contenedor">
+
+    <h1 id="nombreProducto">🍗 PRODUCTO 🍗</h1>
+
+    <!-- IMAGEN -->
+
+    <img id="imagenProducto" src="" alt="Producto">
+
+    <h2>🛒 Cantidad</h2>
+
+    <!-- SELECTOR -->
+
+    <select id="cantidad" onchange="calcular()">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+    <!-- PRECIO -->
+
+    <div class="precio" id="precio">
+        Total: 25 Bs
+    </div>
+
+    <!-- BOTÓN COMPRAR -->
+
+    <button onclick="mostrarQR()">
+        🛒 COMPRAR AHORA
+    </button>
+
+    <br>
+
+    <!-- REGRESAR -->
+
+    <a href="index.html">
+        <button class="regresar">
+            ↩ REGRESAR
+        </button>
+    </a>
+
+</div>
+
+<!-- =================================
+     VENTANA QR
+================================= -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-contenido">
+
+        <h2>📱 ESCANEA EL QR PARA PAGAR</h2>
+
+        <p>Realiza tu pago mediante nuestro código QR.</p>
+
+        <!-- TU QR BANCARIO -->
+
+        <img src="qr.png" alt="QR de pago">
+
+        <br>
+
+        <a href="https://web.whatsapp.com/send?phone=59178606168&text=Este%20es%20el%20pago%20por%20mi%20pedido"
+           target="_blank"
+           class="whatsapp-btn">
+
+            💚 PAGAR POR WHATSAPP
+
+        </a>
+
+        <button class="cerrar" onclick="cerrarQR()">
+            ✖ CERRAR
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =================================
+     JAVASCRIPT
+================================= -->
+
+<script>
+
+/* =================================
+   DATOS DEL PRODUCTO
+================================= */
+
+const parametros = new URLSearchParams(window.location.search);
+
+const producto = parametros.get("producto") || "Producto";
+
+const imagen = parametros.get("imagen") || "";
+
+const precioProducto = Number(parametros.get("precio")) || 25;
+
+/* MOSTRAR PRODUCTO */
+
+document.getElementById("nombreProducto").textContent =
+    "🍗 " + producto + " 🍗";
+
+document.getElementById("imagenProducto").src = imagen;
+
+/* MOSTRAR PRECIO INICIAL */
+
+document.getElementById("precio").textContent =
+    "Total: " + precioProducto + " Bs";
+
+/* =================================
+   CALCULAR PRECIO
+================================= */
+
+function calcular(){
+
+    let cantidad = Number(
+        document.getElementById("cantidad").value
+    );
+
+    let total = cantidad * precioProducto;
+
+    document.getElementById("precio").textContent =
+        "Total: " + total.toFixed(2) + " Bs";
+
+}
+
+/* =================================
+   MOSTRAR QR
+================================= */
+
+function mostrarQR(){
+
+    const modal = document.getElementById("modal");
+
+    modal.classList.remove("cerrando");
+
+    modal.style.display = "flex";
+
+}
+
+/* =================================
+   CERRAR QR
+================================= */
+
+function cerrarQR(){
+
+    const modal = document.getElementById("modal");
+
+    modal.classList.add("cerrando");
+
+    setTimeout(function(){
+
+        modal.style.display = "none";
+
+        modal.classList.remove("cerrando");
+
+    },300);
+
+}
+
+/* =================================
+   CERRAR AL TOCAR FUERA
+================================= */
+
+document.getElementById("modal").addEventListener("click",function(event){
+
+    if(event.target === this){
+
+        cerrarQR();
+
+    }
+
+});
+
+/* =================================
+   CERRAR CON ESCAPE
+================================= */
+
+document.addEventListener("keydown",function(event){
+
+    if(event.key === "Escape"){
+
+        cerrarQR();
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

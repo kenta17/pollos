@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>El Pollo Feliz</title>
+    <style>
+html {
+    scroll-behavior: smooth;
+}
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Encabezado con degradado rojo */
+        header {
+            background: linear-gradient(to right, #b71c1c, #ff5252);
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        /* Menú */
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            margin: 10px;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #ff5252;
+            border-color: #ff5252;
+        }
+
+        /* Sección de inicio con imagen de fondo */
+        .inicio {
+            height: 100vh;
+            background-image: url("pollo1.jpeg");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .inicio h2 {
+            font-size: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+/* Sección productos con fondo */
+.productos {
+    padding: 40px;
+    text-align: center;
+    background-image: url("pollo2.jpg");
+    background-size: cover;
+    background-position: center;
+
+    position: relative; /* 👈 ESTA LÍNEA ES LA CLAVE */
+}
+
+/* Oscurecer un poco el fondo (opcional pero se ve mejor) */
+.productos::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.productos h2 {
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+/* Contenedor */
+.contenedor-productos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+/* Tarjetas */
+.producto {
+    background: white;
+    width: 220px;
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.producto:hover {
+    transform: scale(1.05);
+}
+
+.producto img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Etiquetas */
+.etiqueta {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.etiqueta.promo {
+    background: orange;
+}
+
+/* Precio */
+.producto h3 span {
+    color: gray;
+    text-decoration: line-through;
+    font-size: 14px;
+}
+
+/* Botón */
+.producto button {
+    background: #e91e63;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.producto button:hover {
+    background: #c2185b;
+}
+.contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(4, 220px);
+    column-gap: 50px; /* 👈 separación horizontal */
+    row-gap: 60px;    /* 👈 separación vertical (más importante) */
+    justify-content: center;
+}
+.producto {
+    background: white;
+    width: 220px;
+    padding: 25px; /* 👈 más aire dentro */
+    border-radius: 10px;
+    position: relative;
+    transition: 0.3s;
+}
+.producto img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px; /* 👈 separa imagen del texto */
+}
+/* SECCIÓN COMPLETA */
+.seccion-mapa {
+    width: 100%;
+    padding: 60px 0;
+    text-align: center;
+
+    /* 👇 TU IMAGEN DE FONDO */
+    background-image: url("pollo12.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+}
+
+/* TÍTULO */
+.seccion-mapa h2 {
+    color: #e53935;
+    font-size: 30px;
+}
+
+/* TEXTO */
+.seccion-mapa p {
+    margin-bottom: 20px;
+}
+
+/* MAPA GRANDE Y CENTRADO */
+.seccion-mapa iframe {
+    width: 80%;          /* 👈 ancho grande */
+    max-width: 1000px;   /* 👈 límite */
+    height: 500px;
+    border: none;
+    border-radius: 10px;
+}
+
+
+/* ================= GALERÍA ================= */
+
+.galeria {
+    padding: 70px 20px;
+    text-align: center;
+
+    /* 👇 TU IMAGEN DE FONDO */
+    background-image: url("fondo-galeria.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+}
+
+/* Oscurece el fondo para que resalte el contenido */
+.galeria::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+}
+
+/* Todo encima del fondo oscuro */
+.galeria h2,
+.contenedor-galeria {
+    position: relative;
+    z-index: 1;
+}
+
+/* Título */
+.galeria h2 {
+    font-size: 38px;
+    color: white;
+    margin-bottom: 50px;
+}
+
+/* Contenedor */
+.contenedor-galeria {
+    display: grid;
+    grid-template-columns: repeat(2, 380px);
+    gap: 40px;
+    justify-content: center;
+}
+
+/* Tarjetas */
+.item-galeria {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.4);
+    transition: 0.3s;
+}
+
+.item-galeria:hover {
+    transform: scale(1.04);
+}
+
+/* Imágenes */
+.item-galeria img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+/* Títulos */
+.item-galeria h3 {
+    color: #d84315;
+    margin-top: 15px;
+    font-size: 22px;
+}
+
+/* Descripciones */
+.item-galeria p {
+    padding: 10px 20px 25px;
+    color: #555;
+    font-size: 15px;
+}
+
+
+/* ================= QUIÉNES SOMOS ================= */
+
+.quienes-somos {
+    padding: 80px 20px;
+
+    /* TU IMAGEN DE FONDO */
+    background-image: url("fondo-quienes.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+}
+
+/* Oscurecer fondo */
+.quienes-somos::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+}
+
+/* Título */
+.quienes-somos h2 {
+    position: relative;
+    z-index: 1;
+
+    text-align: center;
+    color: white;
+    font-size: 42px;
+    margin-bottom: 50px;
+}
+
+/* Contenedor */
+.contenedor-quienes {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Tarjetas generales */
+.card-quienes {
+    background: rgba(255,255,255,0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.4);
+    transition: 0.3s;
+}
+
+.card-quienes:hover {
+    transform: translateY(-10px);
+}
+
+/* Historia al centro */
+.historia-centro {
+    width: 420px;
+}
+
+/* Costados */
+.lado {
+    width: 280px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Títulos */
+.card-quienes h3 {
+    color: #d84315;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* Texto */
+.card-quienes p {
+    color: #444;
+    line-height: 1.8;
+    text-align: justify;
+    font-size: 15px;
+}
+/* ================= CONTACTANOS ================= */
+
+.contactanos {
+    padding: 80px 20px;
+
+    /* 👇 IMAGEN DE FONDO */
+    background-image: url("fondo-contactanos.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    position: relative;
+}
+
+/* Oscurecer ligeramente el fondo */
+.contactanos::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+}
+
+/* Todo el contenido encima */
+.contactanos h2,
+.contenedor-contacto {
+    position: relative;
+    z-index: 1;
+}
+
+/* Título */
+.contactanos h2 {
+    text-align: center;
+    color: white;
+    font-size: 42px;
+    margin-bottom: 50px;
+}
+
+/* Contenedor */
+.contenedor-contacto {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+/* Tarjetas */
+.card-contacto {
+    background: rgba(255,255,255,0.95);
+    width: 320px;
+    padding: 35px;
+    border-radius: 20px;
+    text-align: center;
+
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.4);
+
+    transition: 0.3s;
+}
+
+.card-contacto:hover {
+    transform: translateY(-10px);
+}
+
+/* Iconos */
+.icono {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+/* Títulos */
+.card-contacto h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #d84315;
+}
+
+/* Texto */
+.card-contacto p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* Botones */
+.card-contacto a {
+    display: inline-block;
+    padding: 12px 25px;
+
+    background: #e53935;
+    color: white;
+
+    text-decoration: none;
+    border-radius: 10px;
+
+    transition: 0.3s;
+}
+
+.card-contacto a:hover {
+    background: #b71c1c;
+}
+
+/* Colores especiales */
+.whatsapp .icono {
+    color: #25D366;
+}
+
+.correo .icono {
+    color: #ff7043;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <h1>EL POLLO FELIZ</h1>
+    </header>
+
+    <!-- Menú -->
+<nav>
+    <a href="#inicio">INICIO</a>
+    <a href="#quienes">QUIÉNES SOMOS</a>
+    <a href="#productos">PRODUCTOS</a>
+    <a href="#galeria">GALERIA</a>
+    <a href="#mapa">UBICACION</a>
+    <a href="#contactanos">CONTACTANOS</a>
+</nav>
+
+    <!-- Inicio con imagen de fondo -->
+   <section id="inicio" class="inicio">
+        <h2>Los mejores pollos a la brasa 🍗🔥</h2>
+    </section>
+
+<!-- ================= QUIÉNES SOMOS ================= -->
+<section id="quienes" class="quienes-somos">
+
+    <h2>🐔 QUIÉNES SOMOS 🐔</h2>
+
+    <div class="contenedor-quienes">
+
+        <!-- MISIÓN -->
+        <div class="card-quienes lado">
+            <h3>🎯 MISIÓN</h3>
+
+            <p>
+                Brindar productos de alta calidad y excelente sabor,
+                ofreciendo atención rápida, amable y un ambiente
+                familiar que haga sentir felices a nuestros clientes.
+            </p>
+        </div>
+
+        <!-- HISTORIA CENTRO -->
+        <div class="card-quienes historia-centro">
+
+            <h3>📖 NUESTRA HISTORIA</h3>
+
+            <p>
+                El Pollo Feliz nació con la idea de compartir momentos
+                especiales alrededor de un delicioso pollo a la brasa.
+                Desde nuestros inicios trabajamos con pasión, utilizando
+                ingredientes frescos, recetas únicas y una atención cálida
+                para brindar una experiencia inolvidable a las familias
+                de Oruro.
+            </p>
+
+            <p>
+                Gracias al apoyo de nuestros clientes, seguimos creciendo
+                y mejorando cada día, manteniendo siempre el sabor y la
+                calidad que nos caracterizan.
+            </p>
+
+        </div>
+
+        <!-- VISIÓN -->
+        <div class="card-quienes lado">
+
+            <h3>🚀 VISIÓN</h3>
+
+            <p>
+                Ser una de las pollerías más reconocidas y preferidas
+                de Bolivia, destacándonos por nuestra calidad,
+                innovación y compromiso con nuestros clientes.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SECCIÓN PRODUCTOS -->
+<section id="productos" class="productos">
+
+    <h2>PRODUCTOS DESTACADOS</h2>
+
+    <div class="contenedor-productos">
+
+        <!-- Producto 1 -->
+        <div class="producto">
+            <span class="etiqueta">EN OFERTA</span>
+            <img src="pollo7.png" alt="Pollo 1">
+            <p>POLLO ENTERO A LA BRASA</p>
+            <h3>70 Bs <span>90 Bs</span></h3>
+          <a href="compra.html?producto=POLLO ENTERO A LA BRASA&imagen=pollo7.png&precio=70">
+    <button>Añadir al carrito</button>
+</a>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="producto">
+            <span class="etiqueta">EN OFERTA</span>
+            <img src="pollo4.jpg" alt="Pollo 2">
+            <p>1/2 POLLO + PAPAS</p>
+            <h3>40 Bs <span>55 Bs</span></h3>
+         <a href="compra.html?producto=1/2 POLLO + PAPAS&imagen=pollo4.jpg&precio=40">
+    <button>Añadir al carrito</button>
+</a>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="producto">
+            <span class="etiqueta promo">PROMOCIÓN</span>
+            <img src="pollo5.jpg" alt="Combo">
+            <p>COMBO FAMILIAR</p>
+            <h3>120 Bs <span>150 Bs</span></h3>
+           <a href="compra.html?producto=COMBO FAMILIAR&imagen=pollo5.jpg&precio=120">
+    <button>Añadir al carrito</button>
+</a>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="producto">
+            <span class="etiqueta promo">PROMOCIÓN</span>
+            <img src="pollo6.jpg" alt="Alitas">
+            <p>ALITAS BBQ</p>
+            <h3>35 Bs <span>50 Bs</span></h3>
+       <a href="compra.html?producto=COMBO FAMILIAR&imagen=pollo6.jpg&precio=35">
+    <button>Añadir al carrito</button>
+</a>
+        </div>
+
+<!-- Producto 5 -->
+<div class="producto">
+    <span class="etiqueta">EN OFERTA</span>
+    <img src="pollo8.webp" alt="Pipocas">
+    <p>PIPOCAS DE POLLO</p>
+    <h3>25 Bs <span>35 Bs</span></h3>
+    <a href="compra.html?producto=COMBO FAMILIAR&imagen=pollo8.webp&precio=25">
+    <button>Añadir al carrito</button>
+</a>
+</div>
+
+<!-- Producto 6 -->
+<div class="producto">
+    <span class="etiqueta">EN OFERTA</span>
+    <img src="pollo9.jpg" alt="Nuggets">
+    <p>NUGGETS DE POLLO</p>
+    <h3>30 Bs <span>40 Bs</span></h3>
+    <a href="compra.html?producto=COMBO FAMILIAR&imagen=pollo9.jpg&precio=30">
+    <button>Añadir al carrito</button>
+</a>
+</div>
+
+<!-- Producto 7 -->
+<div class="producto">
+    <span class="etiqueta promo">PROMOCIÓN</span>
+    <img src="pollo10.jpg" alt="Sopa">
+    <p>SOPA DE POLLO</p>
+    <h3>20 Bs <span>30 Bs</span></h3>
+    <a href="compra.html?producto=COMBO FAMILIAR&imagen=pollo10.jpg&precio=20">
+    <button>Añadir al carrito</button>
+</a>
+</div>
+
+<!-- Producto 8 -->
+<div class="producto">
+    <span class="etiqueta promo">PROMOCIÓN</span>
+    <img src="pollo11.webp" alt="Spiedo">
+    <p>POLLO ENTERO AL SPIEDO</p>
+    <h3>80 Bs <span>100 Bs</span></h3>
+   <a href="compra.html?producto=COMBO FAMILIAR&imagen=pollo11.webp&precio=80">
+    <button>Añadir al carrito</button>
+</a>
+</div>
+</section>
+
+<!-- SECCIÓN GALERÍA -->
+<section id="galeria" class="galeria">
+
+    <h2>🔥 NUESTRAS INSTALACIONES Y PRODUCCIÓN 🔥</h2>
+
+    <div class="contenedor-galeria">
+
+        <!-- Imagen 1 -->
+        <div class="item-galeria">
+            <img src="local1.jpg" alt="Área principal">
+            <h3>Área Principal</h3>
+            <p>Ambiente cómodo y moderno para disfrutar en familia y con amigos.</p>
+        </div>
+
+        <!-- Imagen 2 -->
+        <div class="item-galeria">
+            <img src="cocina1.jpg" alt="Cocina">
+            <h3>Cocina Profesional</h3>
+            <p>Preparación de nuestros pollos con ingredientes frescos y máxima higiene.</p>
+        </div>
+
+        <!-- Imagen 3 -->
+        <div class="item-galeria">
+            <img src="produccion1.jpg" alt="Producción">
+            <h3>Proceso de Producción</h3>
+            <p>Elaboración cuidadosa y cocción perfecta para lograr el mejor sabor.</p>
+        </div>
+
+        <!-- Imagen 4 -->
+        <div class="item-galeria">
+            <img src="local2.jpg" alt="Clientes">
+            <h3>Zona Familiar</h3>
+            <p>Espacios amplios y agradables para compartir momentos felices.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- SECCIÓN UBICACIÓN -->
+<section id="mapa" class="seccion-mapa">
+
+    <h2>🐥 UBICACIÓN 🐥</h2>
+    <p>📍 Encuéntranos en el corazón de Oruro</p>
+
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30361.5366321844!2d-67.13219404220584!3d-17.969798427631194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e2b0bc4cc33b45%3A0x6a98bde381be1ac8!2sPlaza%20Principal%2010%20de%20Febrero!5e0!3m2!1ses!2sbo!4v1772111228004!5m2!1ses!2sbo"
+        loading="lazy">
+    </iframe>
+
+</section>
+    </div>
+
+<!-- ================= CONTACTANOS ================= -->
+<section id="contactanos" class="contactanos">
+
+    <h2>📞 CONTÁCTANOS 📞</h2>
+
+    <div class="contenedor-contacto">
+
+        <!-- WHATSAPP -->
+        <div class="card-contacto whatsapp">
+
+            <div class="icono">💬</div>
+
+            <h3>WhatsApp</h3>
+
+            <p>
+                Realiza tus pedidos y consultas de manera rápida
+                y sencilla desde WhatsApp.
+            </p>
+
+	<a href="https://web.whatsapp.com/send?phone=59178606168&text=Mas%20informacion" target="_blank">
+    Mandar Mensaje
+</a>
+
+        </div>
+
+        <!-- CORREO -->
+        <div class="card-contacto correo">
+
+            <div class="icono">📧</div>
+
+            <h3>Correo Electrónico</h3>
+
+            <p>
+                Envíanos tus dudas, sugerencias o pedidos especiales
+                mediante nuestro correo electrónico.
+            </p>
+
+	    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=fernandokenta@gmail.com&su=Mas+informacion&body=Hola,+quiero+mas+informacion." target="_blank">
+    		Enviar Correo
+	    </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>
